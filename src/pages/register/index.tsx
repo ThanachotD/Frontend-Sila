@@ -80,7 +80,7 @@ const index = () => {
                     <>
                         {
                             currentStep == 1
-                            ?<>
+                            && <>
 
                                 <label className='flex justify-start text-071320 text-2xl mt-6'>ยินดีต้อนรับ</label>
                                 <label className='flex justify-start text-071320 text-sm mb-6'>แหล่งรวบรวมข้อมูลออนไลน์ที่เกี่ยวข้องกับอุตสาหกรรมบันเทิงของประเทศไทย</label>
@@ -97,11 +97,10 @@ const index = () => {
                                     />
                                 </div>
                             </>
-                            :undefined
                         }
                         {
                             currentStep == 2
-                            ?<>
+                            && <>
                                 <label className='flex justify-start text-071320 text-2xl mt-6 mb-6'>ข้อมูลบัญชีผู้ใช้</label>
                     
                                 <div className="mb-3">
@@ -127,11 +126,10 @@ const index = () => {
                                     />
                                 </div>
                             </>
-                            :undefined
                         }
                         {
                             currentStep == 3
-                            ?<>
+                            && <>
                                 <label className='flex justify-start text-071320 text-2xl mt-6 mb-6'>ข้อมูลส่วนตัว</label>
                                 <div className="mb-3">
                                     <label htmlFor="first_name" className="block mb-1 text-sm font-medium text-575757 dark:text-575757">ชื่อ - นามสกุล</label>
@@ -167,7 +165,6 @@ const index = () => {
                                     />
                                 </div>
                             </>
-                            :undefined
                         }
                     </>
 
