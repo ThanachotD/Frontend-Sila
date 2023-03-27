@@ -23,7 +23,7 @@ const Header = () => {
         <div className="col-start-6 col-end-6 flex justify-end">
             <Link className="grid grid-cols-2 justify-items-stretch flex items-stretch" href={'/login'}>
                 <label className="self-center text-black">Thanasini</label>
-                <Image className="justify-self-end" src={ProfileImg} alt="" width={52} height={52} />
+                <Image className="justify-self-end" src={ProfileImg} alt="" width={52} height={52} priority/>
             </Link>
         </div>
 

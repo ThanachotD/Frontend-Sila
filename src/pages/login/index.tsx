@@ -28,12 +28,6 @@ const index = () => {
             response.json()
                 .then(data => {
                   setCookie('token', data.token);
-                  setCookie('firstname', data.first_name);
-                  setCookie('lastname', data.last_name);
-                  setCookie('nickname', data.nick_name);
-                  setCookie('phone', data.phone);
-                  setCookie('stdID', data.student_id)
-                  setCookie('id', data.user_id);
                   console.log(data)
                   console.log(data.token)
                   console.log(data.first_name)
@@ -75,7 +69,7 @@ const index = () => {
             <div className='flex h-screen'>
                 <form className="m-auto md:w-2/6">
                     <div className='flex justify-center'>
-                        <h1 className="mb-10"><Image src={logo} alt="" width={94} height={52} /></h1>
+                        <h1 className="mb-10"><Image src={logo} alt="" width={94} height={52} priority/></h1>
                     </div>
 
                     <div className="mb-1">

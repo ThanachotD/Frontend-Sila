@@ -44,7 +44,7 @@ const index = () => {
             <div className='flex h-screen'>
                 <form className="m-auto md:w-2/6">
                     <div className='flex justify-center'>
-                        <h1 className="pb-10"><Image src={logo} alt="" width={94} height={52} /></h1>
+                        <h1 className="pb-10"><Image src={logo} alt="" width={94} height={52} priority/></h1>
                     </div>
                     <div className='flex justify-start'>
                         {!complete && (
