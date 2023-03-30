@@ -8,38 +8,104 @@ import { TiTick } from "react-icons/ti";
 
 const index = () => {
     const router = useRouter();
+
+    const [first, setFirst] = useState("");
+    const [last, setLast] = useState("");
+    const [user, setUser] = useState("");
     const [email, setEmail] = useState("");
-
-    //function loading
-    function simulateNetworkRequest() {
-        return new Promise((resolve) => setTimeout(resolve, 2000));
+    const [pass, setPass] = useState("");
+    const [phone, setPhone] = useState("");
+    const [stdID, setStdID] = useState("");
+    const type = useState("USER");
+  
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            "first_name": first,
+            "last_name": last,
+            "nick_name" : user,
+            "email": email,
+            "password" : pass,
+            "phone": phone,
+            "student_id": stdID,
+            "User_type": type
+        })
+    };
+  
+    const postSignIN = async () => {
+        await fetch('http://localhost:8080/auth/signup', requestOptions)
+            .then(response => {
+            response.json()
+                .then(data => {
+                    console.log("First Name = " + first)
+                    console.log("Last Name = " + last)
+                    console.log("Nick Name = " + user)
+                    console.log("Email = " + email)
+                    console.log("Password = " + pass)
+                    console.log("Phone = " + phone)
+                    console.log("Type = " + type)
+                    postLogin();
+                });
+        })
+        .catch (error => {
+            if (error.message == 'Error: You need to specify name or key when calling navigate with an object as the argument. See https://reactnavigation.org/docs/navigation-actions#navigate for usage.') {
+            }
+            console.error(error);
+        }) 
     }
-    
-    const [isLoading, setLoading] = useState(false);
 
-    useEffect(() => {
-    if (isLoading) {
-        simulateNetworkRequest().then(() => {
-        setLoading(false);
-        });
-    }
-    }, [isLoading]);
+    const requestOptionsLogin = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          "email": email,
+          "password" : pass,
+        })
+      };
 
-    const handleClick = () => {setLoading(true)};
+    const postLogin = async () => {
+        await fetch('http://localhost:8080/auth/login', requestOptionsLogin)
+            .then(response => {
+                response.json()
+                    .then(data => {
+                        if(data.token == null || data.token == undefined || data.token == " ") {
+                            // setCookie('token', data.token);
+                            // console.log(data.token) 
+                            // console.log("Set Cookie!")
+                        } else {
+                            setCookie('token', data.token);
+                            console.log(data.token) 
+                            console.log("Set Cookie!")
+                        }
+                        console.log(data)
+                        console.log(data.token)
+                        console.log(data.first_name)
+                        console.log(data.last_name)
+                        console.log(data.nick_name)
+                        console.log(data.phone)
+                        console.log(data.classrooms)
+                        console.log("Email = " + email)
+                        console.log("Password = " + pass)
+                        router.push('/')
+                    });
+            })
+        .catch (error => {
+            console.error(error);
+        }) 
+      }
 
     const steps = ["อีเมลผู้ใช้", "ตั้งค่ารหัสผ่าน", "ข้อมูลส่วนตัว"];
     const [currentStep, setCurrentStep] = useState(1);
     const [complete, setComplete] = useState(false);
 
     useEffect(() => {
-        if(complete == true) {
-            router.push('/home')
+        if(complete) {
+            postSignIN()
         }
-
     }, [complete])
     return (
         <>
-
         <main className='bg-white w-screen h-screen'>
             <div className='flex h-screen'>
                 <form className="m-auto md:w-2/6">
@@ -111,7 +177,7 @@ const index = () => {
                                         className="bg-white border border-DCDCDC outline-none text-060D38 text-sm rounded-lg block w-full p-2.5" 
                                         placeholder="รหัสต้องมีความยาวอย่างน้อย 8 ตัวอักษร" 
                                         required 
-                                        onChange={undefined}
+                                        onChange={e => setPass(e.target.value)}
                                     />
                                 </div>
                                 <div className="mb-6">
@@ -132,14 +198,25 @@ const index = () => {
                             && <>
                                 <label className='flex justify-start text-071320 text-2xl mt-6 mb-6'>ข้อมูลส่วนตัว</label>
                                 <div className="mb-3">
-                                    <label htmlFor="first_name" className="block mb-1 text-sm font-medium text-575757 dark:text-575757">ชื่อ - นามสกุล</label>
+                                    <label htmlFor="first_name" className="block mb-1 text-sm font-medium text-575757 dark:text-575757">ชื่อ</label>
                                     <input 
                                         type="text" 
                                         id="first_name" 
                                         className="bg-white border border-DCDCDC outline-none text-060D38 text-sm rounded-lg block w-full p-2.5" 
                                         placeholder="" 
                                         required 
-                                        onChange={undefined}
+                                        onChange={e => setFirst(e.target.value)}
+                                    />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="last_name" className="block mb-1 text-sm font-medium text-575757 dark:text-575757">นามสกุล</label>
+                                    <input 
+                                        type="text" 
+                                        id="last_name" 
+                                        className="bg-white border border-DCDCDC outline-none text-060D38 text-sm rounded-lg block w-full p-2.5" 
+                                        placeholder="" 
+                                        required 
+                                        onChange={e => setLast(e.target.value)}
                                     />
                                 </div>
                                 <div className="mb-3">
@@ -150,7 +227,7 @@ const index = () => {
                                         className="bg-white border border-DCDCDC outline-none text-060D38 text-sm rounded-lg block w-full p-2.5" 
                                         placeholder="" 
                                         required 
-                                        onChange={undefined}
+                                        onChange={e => setUser(e.target.value)}
                                     />
                                 </div>
                                 <div className="mb-6">
@@ -161,7 +238,7 @@ const index = () => {
                                         className="bg-white border border-DCDCDC outline-none text-060D38 text-sm rounded-lg block w-full p-2.5" 
                                         placeholder="" 
                                         required 
-                                        onChange={undefined}
+                                        onChange={e => setPhone(e.target.value)}
                                     />
                                 </div>
                             </>

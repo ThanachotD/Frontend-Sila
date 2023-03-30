@@ -27,40 +27,43 @@ const index = () => {
           .then(response => {
             response.json()
                 .then(data => {
-                  setCookie('token', data.token);
-                  console.log(data)
-                  console.log(data.token)
-                  console.log(data.first_name)
-                  console.log(data.last_name)
-                  console.log(data.nick_name)
-                  console.log(data.phone)
-                  console.log(data.classrooms)
-                  console.log("Email = " + email)
-                  console.log("Password = " + pass)
-                  router.push('/')
+                    if(data.token == null || data.token == undefined || data.token == " ") {
+                        // setCookie('token', data.token);
+                        // console.log(data.token) 
+                        // console.log("Set Cookie!")
+                    } else {
+                        setCookie('token', data.token);
+                        console.log(data.token) 
+                        console.log("Set Cookie!")
+                    }
+                    console.log(data)
+                    console.log(data.token)
+                    console.log(data.first_name)
+                    console.log(data.last_name)
+                    console.log(data.nick_name)
+                    console.log(data.phone)
+                    console.log(data.classrooms)
+                    console.log("Email = " + email)
+                    console.log("Password = " + pass)
+                    router.push('/')
                 });
         })
         .catch (error => {
-          if (error.message == 'Error: You need to specify name or key when calling navigate with an object as the argument. See https://reactnavigation.org/docs/navigation-actions#navigate for usage.') {
-          }
           console.error(error);
         }) 
       }
     //function loading
-    function simulateNetworkRequest() {
-        return new Promise((resolve) => setTimeout(resolve, 2000));
-    }
     
     const [isLoading, setLoading] = useState(false);
     useEffect(() => {
     if (isLoading) {
-        simulateNetworkRequest().then(() => {
+        postLogin().then(() => {
         setLoading(false);
         });
     }
     }, [isLoading]);
 
-    const handleClick = () => {setLoading(true), router.push("/home")};
+    const handleClick = () => {setLoading(true)};
 
     return (
         <>
