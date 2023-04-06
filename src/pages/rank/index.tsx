@@ -5,15 +5,12 @@ import SongList from "../../components/ranking/songlist";
 
 const rank = () => {
   return (
-    <main className="bg-FAFAFA w-screen h-screen">
-      <Navbar>
-        <main>
-          <Title/>
-          <SongList/>
-        </main>
-      </Navbar>
-
-    </main>
+    <Navbar>
+      <main className="bg-FAFAFA w-screen h-screen">
+        <Title/>
+        <SongList/>
+      </main>
+    </Navbar>
   );
 };
 
