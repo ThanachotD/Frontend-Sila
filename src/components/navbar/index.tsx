@@ -6,6 +6,8 @@ import Search from "./Search";
 import Link from "next/link";
 import NavLink from "./NavLink";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { deleteCookie } from "cookies-next";
+import { useRouter } from "next/router";
 
 interface props {
   children: JSX.Element;
@@ -15,6 +17,12 @@ const Navbar = ({ children }: props) => {
   const [toggle, setToggle] = React.useState(false);
   const toggleDropdown = () => {
     setToggle(!toggle);
+  };
+
+  const router = useRouter();
+  const logout = () => {
+    deleteCookie("token");
+    router.push("/");
   };
   return (
     <>
@@ -46,17 +54,16 @@ const Navbar = ({ children }: props) => {
         </button>
 
         {/* User Account */}
-        <div className="flex">
+        <button className="flex"  onClick={()=>logout()}>
           <label className="max-lg:hidden self-center text-black mx-3">
             Thanasini
           </label>
-          <Link
+          <div
             className="justify-items-stretch flex items-stretch"
-            href={"/login"}
           >
             <Image src={ProfileImg} alt="" width={50} height={50} />
-          </Link>
-        </div>
+          </div>
+        </button>
       </nav>
 
       {children}

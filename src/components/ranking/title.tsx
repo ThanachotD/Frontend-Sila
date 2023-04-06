@@ -2,7 +2,7 @@ import React from "react";
 
 const title = () => {
   return (
-    <div className="mt-7 flex w-full justify-center">
+    <div className="mt-0 flex w-full justify-center">
         <div className="w-3/4">
       <h1 className="text-3B3046 font-bold text-3xl flex my-2">
         ผลลัพธ์จากการจัดอันดับ
