@@ -14,7 +14,9 @@ module.exports = {
         "060D38" : '#060D38',
         "071320" : '#071320',
         "21F5E6" : '#21F5E6',
-        "ECECEC" : '#ECECEC'
+        "ECECEC" : '#ECECEC',
+        "FDFFA1" : '#FDFFA1',
+        "FBBC05" : '#FBBC05'
       }
     },
   },
