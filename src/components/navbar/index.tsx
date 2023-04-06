@@ -27,7 +27,7 @@ const Navbar = ({ children }: props) => {
         {/* Nav Links */}
         <ul className="max-lg:hidden">
           <NavLink path="/home" name="หน้าหลัก" />
-          <NavLink path="/home" name="อันดับ" />
+          <NavLink path="/rank" name="อันดับ" />
         </ul>
 
         {/* Search Bar */}
@@ -40,7 +40,7 @@ const Navbar = ({ children }: props) => {
           {toggle && (
             <ul className="flex flex-col absolute top-5 right-0 bg-F5F5F5 border">
               <NavLink path="/home" name="หน้าหลัก" />
-              <NavLink path="/home" name="อันดับ" />
+              <NavLink path="/rank" name="อันดับ" />
             </ul>
           )}
         </button>
