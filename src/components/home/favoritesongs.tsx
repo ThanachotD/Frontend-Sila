@@ -29,7 +29,7 @@ const pics = [pic0, pic1, pic2, pic3, pic4];
 
 const favoritesong = () => {
   return (
-    <div className="mt-7 flex flex-col w-4/5">
+    <div className="mt-7 flex flex-col w-4/5 ml-20">
       <div>
         <h1 className="text-3B3046 font-bold text-3xl flex my-2 mb-7">
           คนไทยชอบฟังเพลงอะไรกัน
