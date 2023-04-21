@@ -24,14 +24,14 @@ const home = () => {
     <main className="bg-FAFAFA w-screen h-screen">
       <Navbar>
         <div className="grid grid-cols-2 grid-rows-2 gap-4">
-          <div className="col-span-1 row-span-2">
-            <Comment />
+          <div className="col-span-1 row-span-2 ml-16">
+          <FevSong />
           </div>
           <div className="col-span-1 row-span-1">
             <BarChart labels={labels} data={data} title="My First Dataset" />
           </div>
           <div className="col-span-1 row-span-1">
-            <FevSong />
+            //ศิลปิลมาแรง
           </div>
         </div>
       </Navbar>
