@@ -1,7 +1,13 @@
+import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 import { HiSearch } from "react-icons/hi";
 
 const Search = () => {
+  const router = useRouter();
+  const handleSubmit = () => {
+    router.push("home/search")
+}
   return (
     <label className="flex items-stretch justify-items-stretch w-full">
       <input
@@ -16,10 +22,11 @@ const Search = () => {
         placeholder="ค้นหา"
         type="search"
         name="search"
+        onSubmit={() => handleSubmit()}
       />
-      <button type="submit" className="absolute ml-1 self-center">
+      <Link type="submit" className="absolute ml-1 self-center" href={'/home/search'}>
         <HiSearch color="6B6B6B" width={24} height={24} />
-      </button>
+      </Link>
     </label>
   );
 };
