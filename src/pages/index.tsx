@@ -1,14 +1,10 @@
 import { Inter } from 'next/font/google'
 import { hasCookie } from 'cookies-next';
-import Login from './login'
-
+import Login from "./login";
+import Homes from './home';
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   const token = hasCookie('token');
-  if(token){
-    return <Home/>;
-  } else {
-    return <Login/>;
-  }
+  return token ? <Homes /> : <Login />;
 }
